@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import ThreeCanvas from '../components/minecraft/ThreeCanvas';
 
 // A simple box component
 const Box = () => {
@@ -10,18 +10,6 @@ const Box = () => {
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color="orange" />
     </mesh>
-  );
-};
-
-// A simple scene component
-const Scene = () => {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <Box />
-      <OrbitControls />
-    </>
   );
 };
 
@@ -48,9 +36,10 @@ const MinecraftClone = () => {
         </div>
       ) : (
         <div style={{ width: '100vw', height: '100vh' }}>
-          <Canvas>
-            <Scene />
-          </Canvas>
+          <ThreeCanvas>
+            <Box />
+            <OrbitControls />
+          </ThreeCanvas>
           
           <button 
             className="absolute top-4 right-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
