@@ -1,5 +1,5 @@
 
-import create from 'zustand';
+import { create } from 'zustand';
 import { nanoid } from 'nanoid';
 
 // Define the texture types
