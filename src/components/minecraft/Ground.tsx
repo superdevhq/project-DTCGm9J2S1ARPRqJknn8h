@@ -3,7 +3,9 @@ import { usePlane } from '@react-three/cannon';
 import { useStore } from './hooks/useStore';
 import { RepeatWrapping, NearestFilter, TextureLoader } from 'three';
 import { useEffect, useState } from 'react';
-import grassTexture from '@/assets/textures/grass.jpg';
+
+// Use a placeholder texture URL instead of local import
+const GRASS_TEXTURE_URL = 'https://raw.githubusercontent.com/pmndrs/drei-assets/master/prototype/light/texture_08.png';
 
 const Ground = ({ position = [0, 0, 0] }: { position?: [number, number, number] }) => {
   const [ref] = usePlane(() => ({
@@ -18,7 +20,7 @@ const Ground = ({ position = [0, 0, 0] }: { position?: [number, number, number] 
   // Load texture
   useEffect(() => {
     const loader = new TextureLoader();
-    loader.load(grassTexture, (loadedTexture) => {
+    loader.load(GRASS_TEXTURE_URL, (loadedTexture) => {
       loadedTexture.wrapS = RepeatWrapping;
       loadedTexture.wrapT = RepeatWrapping;
       loadedTexture.repeat.set(100, 100);
