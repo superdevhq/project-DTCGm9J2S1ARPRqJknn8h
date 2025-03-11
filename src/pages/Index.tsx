@@ -52,7 +52,12 @@ const MinecraftClone = () => {
         </div>
       ) : (
         <>
-          <Canvas shadows camera={{ fov: 75, near: 0.1, far: 1000 }}>
+          <Canvas 
+            shadows 
+            camera={{ fov: 75, near: 0.1, far: 1000 }}
+            gl={{ antialias: false }}
+            style={{ height: '100vh', width: '100vw' }}
+          >
             <Sky sunPosition={[100, 100, 20]} />
             <ambientLight intensity={0.5} />
             <directionalLight 
@@ -63,11 +68,9 @@ const MinecraftClone = () => {
             />
             
             <Physics gravity={[0, -30, 0]}>
-              <Suspense fallback={null}>
-                <Player position={[0, 10, 0]} />
-                <Ground position={[0, -0.5, 0]} />
-                <Cubes />
-              </Suspense>
+              <Player position={[0, 10, 0]} />
+              <Ground position={[0, -0.5, 0]} />
+              <Cubes />
             </Physics>
             
             <PointerLockControls />
