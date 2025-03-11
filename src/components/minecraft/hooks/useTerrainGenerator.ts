@@ -1,9 +1,9 @@
 
 import { useStore } from './useStore';
-import SimplexNoise from 'simplex-noise';
+import { createNoise2D } from 'simplex-noise';
 
 // Create a new simplex noise instance
-const simplex = new SimplexNoise();
+const noise2D = createNoise2D();
 
 interface TerrainGeneratorOptions {
   width?: number;
@@ -32,7 +32,7 @@ export const useTerrainGenerator = () => {
         const nz = z * scale + seed;
         
         // Get noise value between -1 and 1
-        const noiseValue = simplex.noise2D(nx, nz);
+        const noiseValue = noise2D(nx, nz);
         
         // Convert to height value between 0 and maxHeight
         const height = Math.floor((noiseValue + 1) * maxHeight / 2);
@@ -60,7 +60,7 @@ export const useTerrainGenerator = () => {
       // Find the ground height at this position
       const nx = treeX * scale + seed;
       const nz = treeZ * scale + seed;
-      const noiseValue = simplex.noise2D(nx, nz);
+      const noiseValue = noise2D(nx, nz);
       const groundHeight = Math.floor((noiseValue + 1) * maxHeight / 2);
       
       // Create a tree trunk
